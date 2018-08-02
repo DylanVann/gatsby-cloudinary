@@ -7,24 +7,31 @@ const md5File = require('md5-file/promise')
 
 interface Options {
     path: string
-    maxWidth: number
-    toImgFormat: 'jpg' | 'png'
-    toVideoFormat: 'mp4'
-    toVideoPosterFormat: 'jpg' | 'png'
+    maxWidth?: number
+    toImgFormat?: 'jpg' | 'png'
+    toVideoFormat?: 'mp4'
+    toVideoPosterFormat?: 'jpg' | 'png'
     config: CloudinaryOptions
 }
 
 type BestProps = FastImageImageBestProps | FastImageVideoBestProps
 
 export const getData = async (options: Options): Promise<BestProps> => {
-    const { path, config, maxWidth, toVideoPosterFormat, toImgFormat } = options
+    const {
+        path,
+        maxWidth = 1024,
+        toImgFormat = 'jpg',
+        toVideoFormat = 'mp4',
+        toVideoPosterFormat = 'jpg',
+        config,
+    } = options
     const name = config.cloud_name
     const id = await md5File(path)
     const data = await uploadOrGetMetadata(id, path, config)
     const { width, height } = data
 
     if (isVideo(path)) {
-        const videoSrc = `https://res.cloudinary.com/${name}/video/upload/w_${maxWidth}/${id}.mp4`
+        const videoSrc = `https://res.cloudinary.com/${name}/video/upload/w_${maxWidth}/${id}.${toVideoFormat}`
 
         const videoPosterSrc = `https://res.cloudinary.com/${name}/video/upload/w_${maxWidth}/${id}.${toVideoPosterFormat}`
 
