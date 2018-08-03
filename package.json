@@ -8,7 +8,6 @@
         "cloudinary"
     ],
     "main": "dist/index.cjs.js",
-    "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
@@ -23,7 +22,7 @@
         "lint": "tslint -p . -t codeFrame 'src/**/*.{js,jsx,ts,tsx}'",
         "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,html}'",
         "prebuild": "rimraf dist",
-        "build": "tsc --module commonjs && rollup -c rollup.config.ts",
+        "build": "tsc && babel --extensions '.ts' src --out-dir dist",
         "start": "rollup -c rollup.config.ts -w",
         "test": "exit 0",
         "test:watch": "jest --watch",
@@ -124,12 +123,5 @@
         "react-fast-image": "^0.0.21",
         "react-img-tag": "^0.0.2",
         "react-video-tag": "^0.0.10"
-    },
-    "peerDependencies": {
-        "emotion": "^9.2.6",
-        "react": "^16.4.1"
-    },
-    "globals": {
-        "react": "React"
     }
 }

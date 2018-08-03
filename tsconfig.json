@@ -13,6 +13,7 @@
         "outDir": "dist",
         "typeRoots": ["node_modules/@types"],
         "jsx": "react",
+        "emitDeclarationOnly": true,
         "esModuleInterop": true,
         "noUnusedLocals": true
     },
