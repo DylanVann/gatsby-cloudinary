@@ -1,4 +1,4 @@
-import { uploadOrGetMetadata, isVideo, isImage, CloudinaryOptions } from 'cloudinary-promised'
+import { uploadOrGetMetadata, isVideo, isImage, CloudinaryOptions } from './cloudinary-promised'
 import { FastImageVideoBestProps, FastImageImageBestProps } from 'react-fast-image'
 import getResponsiveWidths from './getResponsiveWidths'
 import getBase64FromUrl from './getBase64FromUrl'
