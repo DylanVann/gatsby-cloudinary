@@ -1,6 +1,6 @@
 {
     "name": "@dylanvann/gatsby-cloudinary",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "description": "This module powers gatsby-remark-cloudinary and gatsby-transformer-cloudinary.",
     "keywords": [
         "react",
