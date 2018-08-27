@@ -5745,6 +5745,10 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
 
+url-exists-promise@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/url-exists-promise/-/url-exists-promise-1.0.2.tgz#deec077c1a77ca4acc9e3212e1e7153d06d57a3a"
+
 url-join@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-4.0.0.tgz#4d3340e807d3773bda9991f8305acdcc2a665d2a"

@@ -125,6 +125,7 @@
         "md5-file": "^4.0.0",
         "react-fast-image": "^0.0.21",
         "react-img-tag": "^0.0.2",
-        "react-video-tag": "^0.0.10"
+        "react-video-tag": "^0.0.10",
+        "url-exists-promise": "^1.0.2"
     }
 }
