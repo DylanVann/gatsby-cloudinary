@@ -1450,9 +1450,9 @@ closest-file-data@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/closest-file-data/-/closest-file-data-0.1.4.tgz#975f87c132f299d24a0375b9f63ca3fb88f72b3a"
 
-cloudinary-promised@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/cloudinary-promised/-/cloudinary-promised-1.0.9.tgz#ab757a848640ac445dbcd03c9a43d5d7672b15f1"
+cloudinary-promised@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/cloudinary-promised/-/cloudinary-promised-1.0.10.tgz#76bc0ae24850f83848d6f8058fe947eeda136e2a"
   dependencies:
     cloudinary "^1.11.0"
     url-exists-promise "^1.0.1"
