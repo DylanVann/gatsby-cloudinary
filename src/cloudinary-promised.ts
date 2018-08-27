@@ -31,41 +31,49 @@ export const uploadFile = (
     localAbsolutePath: string,
     options: CloudinaryOptions,
 ): Promise<any> =>
-    new Promise((resolve, reject) =>
-        cloudinary.v2.uploader.upload(
-            localAbsolutePath,
-            {
-                public_id: id,
-                resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                ...options,
-            },
-            (error: string, result: string) => {
-                if (error) return reject(error)
-                resolve(result)
-            },
-        ),
-    )
+    new Promise((resolve, reject) => {
+        try {
+            cloudinary.v2.uploader.upload(
+                localAbsolutePath,
+                {
+                    public_id: id,
+                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
+                    ...options,
+                },
+                (error: string, result: string) => {
+                    if (error) return reject(error)
+                    resolve(result)
+                },
+            )
+        } catch (e) {
+            reject(e)
+        }
+    })
 
 export const getMetadata = (
     id: string,
     localAbsolutePath: string,
     options: CloudinaryOptions,
 ): Promise<any> =>
-    new Promise((resolve, reject) =>
-        cloudinary.v2.uploader.explicit(
-            id,
-            {
-                image_metadata: true,
-                type: 'upload',
-                resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                ...options,
-            },
-            (error: string, result: string) => {
-                if (error) return reject(error)
-                resolve(result)
-            },
-        ),
-    )
+    new Promise((resolve, reject) => {
+        try {
+            cloudinary.v2.uploader.explicit(
+                id,
+                {
+                    image_metadata: true,
+                    type: 'upload',
+                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
+                    ...options,
+                },
+                (error: string, result: string) => {
+                    if (error) return reject(error)
+                    resolve(result)
+                },
+            )
+        } catch (e) {
+            reject(e)
+        }
+    })
 
 export const imageExists = (id: string, options: CloudinaryOptions): Promise<boolean> => {
     const urlImg = `http://res.cloudinary.com/${options.cloud_name}/image/upload/${id}`
