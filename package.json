@@ -122,6 +122,7 @@
     "dependencies": {
         "axios": "^0.18.0",
         "classnames": "^2.2.6",
+        "cloudinary": "^1.11.0",
         "md5-file": "^4.0.0",
         "react-fast-image": "^0.0.21",
         "react-img-tag": "^0.0.2",
