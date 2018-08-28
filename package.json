@@ -23,7 +23,7 @@
         "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,html}'",
         "prebuild": "rimraf dist",
         "build": "tsc && babel --extensions '.ts' src --out-dir dist",
-        "test": "exit 0",
+        "test": "jest",
         "test:watch": "jest --watch",
         "test:prod": "npm run format -- --list-different && npm run lint && npm run test -- --coverage --no-cache",
         "commit": "git-cz",
@@ -47,8 +47,9 @@
         }
     },
     "jest": {
+        "testEnvironment": "node",
         "transform": {
-            ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+            ".(ts|tsx)": "ts-jest"
         },
         "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
         "moduleFileExtensions": [
@@ -67,14 +68,6 @@
             "/dist/",
             "/coverage/"
         ],
-        "coverageThreshold": {
-            "global": {
-                "branches": 90,
-                "functions": 95,
-                "lines": 95,
-                "statements": 95
-            }
-        },
         "collectCoverage": true
     },
     "prettier": {
@@ -96,6 +89,7 @@
         "@types/react": "^16.4.7",
         "commitizen": "^2.9.6",
         "cz-conventional-changelog": "^2.0.0",
+        "dotenv": "^6.0.0",
         "emotion": "^9.2.6",
         "husky": "^0.14.0",
         "jest": "^23.4.1",
@@ -111,7 +105,7 @@
         "rollup-plugin-sourcemaps": "^0.4.2",
         "rollup-plugin-typescript2": "^0.16.1",
         "semantic-release": "^15.0.0",
-        "ts-jest": "^23.1.0",
+        "ts-jest": "^23.1.4",
         "ts-node": "^7.0.0",
         "tslint": "^5.8.0",
         "tslint-config-prettier": "^1.1.0",
@@ -122,6 +116,7 @@
     "dependencies": {
         "axios": "^0.18.0",
         "classnames": "^2.2.6",
+        "cloudinary": "^1.11.0",
         "md5-file": "^4.0.0",
         "react-fast-image": "^0.0.21",
         "react-img-tag": "^0.0.2",
