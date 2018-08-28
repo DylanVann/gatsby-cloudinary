@@ -1,5 +1,7 @@
 const cloudinary = require('cloudinary')
 import { urlExists } from 'url-exists-promise'
+import fs from 'fs'
+import axios from 'axios'
 
 const videoExtensions = ['mp4']
 const imageExtensions = ['png', 'jpg']
@@ -31,49 +33,40 @@ export const uploadFile = (
     localAbsolutePath: string,
     options: CloudinaryOptions,
 ): Promise<any> =>
-    new Promise((resolve, reject) => {
-        try {
-            cloudinary.v2.uploader.upload(
-                localAbsolutePath,
-                {
+    axios
+        .post(
+            `https://api.cloudinary.com/v1_1/${options.cloud_name}/${
+                isVideo(localAbsolutePath) ? 'video' : 'image'
+            }>/upload`,
+            fs.createReadStream(localAbsolutePath),
+            {
+                params: {
                     public_id: id,
-                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                    ...options,
+                    api_key: options.api_key,
+                    api_secret: options.api_secret,
                 },
-                (error: string, result: string) => {
-                    if (error) return reject(error)
-                    resolve(result)
-                },
-            )
-        } catch (e) {
-            reject(e)
-        }
-    })
+            },
+        )
+        .then(({ data }) => data)
 
 export const getMetadata = (
     id: string,
     localAbsolutePath: string,
     options: CloudinaryOptions,
 ): Promise<any> =>
-    new Promise((resolve, reject) => {
-        try {
-            cloudinary.v2.uploader.explicit(
-                id,
-                {
-                    image_metadata: true,
-                    type: 'upload',
-                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                    ...options,
-                },
-                (error: string, result: string) => {
-                    if (error) return reject(error)
-                    resolve(result)
-                },
-            )
-        } catch (e) {
-            reject(e)
-        }
-    })
+    axios.get(
+        `https://api.cloudinary.com/v1_1/${options.cloud_name}/${
+            isVideo(localAbsolutePath) ? 'video' : 'image'
+        }>/upload`,
+        {
+            params: {
+                public_id: id,
+                api_key: options.api_key,
+                api_secret: options.api_secret,
+                image_metadata: true,
+            },
+        },
+    )
 
 export const imageExists = (id: string, options: CloudinaryOptions): Promise<boolean> => {
     const urlImg = `http://res.cloudinary.com/${options.cloud_name}/image/upload/${id}`
