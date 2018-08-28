@@ -32,22 +32,18 @@ export const uploadFile = (
     options: CloudinaryOptions,
 ): Promise<any> =>
     new Promise((resolve, reject) => {
-        try {
-            cloudinary.v2.uploader.upload(
-                localAbsolutePath,
-                {
-                    public_id: id,
-                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                    ...options,
-                },
-                (error: string, result: string) => {
-                    if (error) return reject(error)
-                    resolve(result)
-                },
-            )
-        } catch (e) {
-            reject(e)
-        }
+        cloudinary.v2.uploader.upload(
+            localAbsolutePath,
+            {
+                public_id: id,
+                resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
+                ...options,
+            },
+            (error: string, result: string) => {
+                if (error) return reject(error)
+                return resolve(result)
+            },
+        )
     })
 
 export const getMetadata = (
@@ -56,23 +52,19 @@ export const getMetadata = (
     options: CloudinaryOptions,
 ): Promise<any> =>
     new Promise((resolve, reject) => {
-        try {
-            cloudinary.v2.uploader.explicit(
-                id,
-                {
-                    image_metadata: true,
-                    type: 'upload',
-                    resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
-                    ...options,
-                },
-                (error: string, result: string) => {
-                    if (error) return reject(error)
-                    resolve(result)
-                },
-            )
-        } catch (e) {
-            reject(e)
-        }
+        cloudinary.v2.uploader.explicit(
+            id,
+            {
+                image_metadata: true,
+                type: 'upload',
+                resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
+                ...options,
+            },
+            (error: string, result: string) => {
+                if (error) return reject(error)
+                return resolve(result)
+            },
+        )
     })
 
 export const imageExists = (id: string, options: CloudinaryOptions): Promise<boolean> => {
