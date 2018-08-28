@@ -1,4 +1,3 @@
-const cloudinary = require('cloudinary')
 import { urlExists } from 'url-exists-promise'
 import fs from 'fs'
 import axios from 'axios'
