@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fails to upload large image 1`] = `"File size too large. Got 10574322. Maximum is 10485760."`;
