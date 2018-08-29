@@ -32,18 +32,14 @@ export const uploadFile = (
     options: CloudinaryOptions,
 ): Promise<any> =>
     new Promise((resolve, reject) => {
-        cloudinary.v2.uploader.upload(
-            localAbsolutePath,
-            {
+        cloudinary.v2.uploader
+            .upload(localAbsolutePath, {
                 public_id: id,
                 resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
                 ...options,
-            },
-            (error: string, result: string) => {
-                if (error) return reject(error)
-                return resolve(result)
-            },
-        )
+            })
+            .then(resolve)
+            .catch(reject)
     })
 
 export const getMetadata = (
@@ -52,19 +48,15 @@ export const getMetadata = (
     options: CloudinaryOptions,
 ): Promise<any> =>
     new Promise((resolve, reject) => {
-        cloudinary.v2.uploader.explicit(
-            id,
-            {
+        cloudinary.v2.uploader
+            .explicit(id, {
                 image_metadata: true,
                 type: 'upload',
                 resource_type: isVideo(localAbsolutePath) ? 'video' : 'image',
                 ...options,
-            },
-            (error: string, result: string) => {
-                if (error) return reject(error)
-                return resolve(result)
-            },
-        )
+            })
+            .then(resolve)
+            .catch(reject)
     })
 
 export const imageExists = (id: string, options: CloudinaryOptions): Promise<boolean> => {
