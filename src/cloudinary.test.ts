@@ -7,11 +7,12 @@ const apiSecret: string = (process.env.CLOUDINARY_API_SECRET as any) as string
 const apiKey: string = (process.env.CLOUDINARY_API_KEY as any) as string
 
 it('uploads image', async () => {
-    await uploadFile('cloudinary', path.join(__dirname, './cloudinary.png'), {
+    const data = await uploadFile('cloudinary', path.join(__dirname, './cloudinary.png'), {
         cloud_name: cloudName,
         api_secret: apiSecret,
         api_key: apiKey,
     })
+    expect(data).toMatchSnapshot()
 })
 
 it('fails to upload large image', async () => {

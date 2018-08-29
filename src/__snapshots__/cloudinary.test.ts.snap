@@ -1,3 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fails to upload large image 1`] = `"File size too large. Got 10574322. Maximum is 10485760."`;
+
+exports[`uploads image 1`] = `
+Object {
+  "bytes": 25587,
+  "created_at": "2018-08-28T19:23:46Z",
+  "etag": "a4b86a44a5d9026a493f8c2910f7cce3",
+  "format": "png",
+  "height": 500,
+  "original_filename": "cloudinary",
+  "overwritten": true,
+  "placeholder": false,
+  "public_id": "cloudinary",
+  "resource_type": "image",
+  "secure_url": "https://res.cloudinary.com/playgroundinc/image/upload/v1535484226/cloudinary.png",
+  "signature": "6b994c2cf7cc761af1176f9c94f88276846b3403",
+  "tags": Array [],
+  "type": "upload",
+  "url": "http://res.cloudinary.com/playgroundinc/image/upload/v1535484226/cloudinary.png",
+  "version": 1535484226,
+  "width": 500,
+}
+`;
